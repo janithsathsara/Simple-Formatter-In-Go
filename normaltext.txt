@@ -1,0 +1,27 @@
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+)
+
+func main() {
+	filegiven, err := os.Open("normaltext.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer filegiven.Close()
+
+	scanner := bufio.NewScanner(filegiven)
+
+	for scanner.Scan() {
+		fmt.Println(scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		log.Fatal(err)
+	}
+}
