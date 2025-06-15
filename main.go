@@ -9,17 +9,28 @@ import (
 
 func main() {
 	file, err := os.Open("normaltext.txt")
+
+	defer file.Close()
+
 	if err != nil {
 		log.Fatal(err)
 	}
-	content := bufio.NewScanner(file)
+	scanner := bufio.NewScanner(file)
 
-	for content.Scan() {
-		processedString := content.Text()
-		fmt.Println(processedString)
+	// for scanner.Scan() {
+	// 	processedString := scanner.Text()
+	// 	fmt.Println(processedString)
+	// }
+
+	scanner.Split(bufio.ScanRunes) //split by character
+
+	for scanner.Scan() {
+		runesScanned := scanner.Text()
+
+		fmt.Printf("\n%s", runesScanned)
 	}
 
-	if err := content.Err(); err != nil {
+	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
 }
