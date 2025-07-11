@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -24,11 +25,21 @@ func main() {
 
 	scanner.Split(bufio.ScanRunes) //split by character
 
+	var collected strings.Builder
+
 	for scanner.Scan() {
 		runesScanned := scanner.Text()
 
+		if runesScanned == ")" {
+			runesScanned += "(==========)"
+		}
+
+		collected.WriteString(runesScanned) // Collects the runes to a single "collected" variable
+
 		fmt.Printf("\n%s", runesScanned)
 	}
+
+	fmt.Println(collected.String())
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
