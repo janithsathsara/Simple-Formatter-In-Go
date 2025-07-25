@@ -27,16 +27,24 @@ func main() {
 
 	var collected strings.Builder
 
-	for scanner.Scan() {
-		runesScanned := scanner.Text()
+	previousChar := ""
 
-		if runesScanned == ")" {
-			runesScanned += "(==========)"
+	for scanner.Scan() {
+		currentRune := scanner.Text()
+
+		if currentRune == "{" {
+			currentRune += "(==========)"
 		}
 
-		collected.WriteString(runesScanned) // Collects the runes to a single "collected" variable
+		if previousChar == "{" && currentRune == "\n" {
+			currentRune += "(==========)"
+		}
 
-		fmt.Printf("\n%s", runesScanned)
+		collected.WriteString(currentRune) // Collects the runes to a single "collected" variable
+
+		fmt.Printf("\n%s", currentRune)
+
+		previousChar = currentRune
 	}
 
 	fmt.Println(collected.String())

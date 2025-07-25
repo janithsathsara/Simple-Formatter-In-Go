@@ -1,0 +1,16 @@
+Only think about spacing.
+Do not worry about python language.
+Think of only about programming languages.
+Check after a newline character
+a boolean value to check whether a newline character was processed and a counter to check whether a curly brace has been opened.
+If both of them are satisfied, a new function will return a string of spaces to be added to the file instead of the available number of spaces.
+There is one other thing, to replace the existing string, create a string and append to it, the set of spaces. Replace these spaces with the output from the previously mentioned function.
+
+Write the pseudocode first
+
+1. If open bracket and after a newline there are more or less than 4 spaces, change it to 4 spaces.
+2. Count the number of open brackets.
+
+
+1. Maybe I can push to a stack and pop from a stack whenever an open bracket is found
+2. Then when the closing bracket is found, just pop the last element
